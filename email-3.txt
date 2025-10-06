@@ -14,7 +14,7 @@ call/text (212) 206-1401 and we'll help.
 If you're ready to join, use the link below:
 
 💻 JOIN THE ACCELERATOR »
-https://www.innovationbound.com/chatgpt-training/small-business-ai-accelerator-payment
+https://www.innovationbound.com/private/2026-ai-accelerator-payment?{{paymentParams}}
 
 QUICK REMINDER:
 - Your Scholarship: {{grantedAmount}} ({{grantedPercentage}}%)

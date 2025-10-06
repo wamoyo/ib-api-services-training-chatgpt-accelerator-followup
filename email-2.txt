@@ -13,7 +13,7 @@ Use the link below to get the full program PDF, all your scholarship details,
 and to reserve your spot.
 
 💻 JOIN THE ACCELERATOR »
-https://www.innovationbound.com/chatgpt-training/small-business-ai-accelerator-payment
+https://www.innovationbound.com/private/2026-ai-accelerator-payment?{{paymentParams}}
 
 Simply reply to this email with any questions, or call/text us at (212) 206-1401.
 

@@ -135,7 +135,7 @@ function getDeadlineDate () {
 }
 
 // Pure: Replaces all template variables in email content
-function replaceVariables (content, application, scholarshipInfo, tracking, edition) {
+function replaceVariables (content, application, scholarshipInfo, tracking, paymentParams) {
   return content
     .replace(/{{name}}/g, application.name)
     .replace(/{{email}}/g, application.email)
@@ -148,6 +148,7 @@ function replaceVariables (content, application, scholarshipInfo, tracking, edit
     .replace(/{{fee}}/g, scholarshipInfo.fee)
     .replace(/{{additionalSeatCost}}/g, scholarshipInfo.additionalSeatCost)
     .replace(/{{date}}/g, getDeadlineDate())
+    .replace(/{{paymentParams}}/g, paymentParams)
     .replace(/{{tracking}}/g, tracking)
     .replace(/{{emailSettings}}/g, `https://www.innovationbound.com/unsubscribe?email=${application.email}`)
 }
@@ -162,13 +163,17 @@ async function sendEmail2 (application) {
       throw new Error(`Invalid assistance value: ${application.assistance}`)
     }
 
+    // Tracking params for analytics
     var tracking = `email=${application.email}&list=ai-accelerator-followup&edition=email-2`
+
+    // Payment params for pre-filling form (different names to avoid conflict)
+    var paymentParams = `applicant=${encodeURIComponent(application.email)}&name=${encodeURIComponent(application.name)}&scholarshipAmount=${encodeURIComponent(scholarshipInfo.grantedAmount)}&finalFee=${encodeURIComponent(scholarshipInfo.fee)}&seatCost=${encodeURIComponent(scholarshipInfo.additionalSeatCost)}`
 
     var rawHtml = await readFile("email-2.html", "utf8")
     var rawTxt = await readFile("email-2.txt", "utf8")
 
-    var html = replaceVariables(rawHtml, application, scholarshipInfo, tracking, 'email-2')
-    var txt = replaceVariables(rawTxt, application, scholarshipInfo, tracking, 'email-2')
+    var html = replaceVariables(rawHtml, application, scholarshipInfo, tracking, paymentParams)
+    var txt = replaceVariables(rawTxt, application, scholarshipInfo, tracking, paymentParams)
 
     await ses.send(new SendEmailCommand({
       Destination: {
@@ -214,13 +219,17 @@ async function sendEmail3 (application) {
       throw new Error(`Invalid assistance value: ${application.assistance}`)
     }
 
+    // Tracking params for analytics
     var tracking = `email=${application.email}&list=ai-accelerator-followup&edition=email-3`
+
+    // Payment params for pre-filling form (different names to avoid conflict)
+    var paymentParams = `applicant=${encodeURIComponent(application.email)}&name=${encodeURIComponent(application.name)}&scholarshipAmount=${encodeURIComponent(scholarshipInfo.grantedAmount)}&finalFee=${encodeURIComponent(scholarshipInfo.fee)}&seatCost=${encodeURIComponent(scholarshipInfo.additionalSeatCost)}`
 
     var rawHtml = await readFile("email-3.html", "utf8")
     var rawTxt = await readFile("email-3.txt", "utf8")
 
-    var html = replaceVariables(rawHtml, application, scholarshipInfo, tracking, 'email-3')
-    var txt = replaceVariables(rawTxt, application, scholarshipInfo, tracking, 'email-3')
+    var html = replaceVariables(rawHtml, application, scholarshipInfo, tracking, paymentParams)
+    var txt = replaceVariables(rawTxt, application, scholarshipInfo, tracking, paymentParams)
 
     await ses.send(new SendEmailCommand({
       Destination: {
