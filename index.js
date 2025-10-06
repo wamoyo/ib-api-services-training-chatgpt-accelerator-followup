@@ -66,6 +66,7 @@ export async function handler (event) {
     var now = new Date()
     var email2Count = 0
     var email3Count = 0
+    var sesLimit = 14 // SES allows 14 emails/second (sending rate limit)
 
     // Process each application
     for (let application of applications.Items) {
@@ -74,16 +75,26 @@ export async function handler (event) {
 
       console.log(`Processing ${application.email}: Applied ${daysSinceApplication} days ago`)
 
-      // Email 2: Send 2 days after application
-      if (daysSinceApplication >= 2 && !application.email2Sent) {
+      // Email 2: Send 1 day after application (under-promise, over-deliver)
+      if (daysSinceApplication >= 1 && !application.email2Sent) {
         await sendEmail2(application)
         email2Count++
+        // Throttle to stay under SES rate limit
+        if (email2Count % sesLimit === 0) {
+          console.log(`Rate limiting: Sent ${email2Count} emails, pausing 1 second...`)
+          await new Promise(resolve => setTimeout(resolve, 1000))
+        }
       }
 
-      // Email 3: Send 8 days after application
+      // Email 3: Send 8 days after application (7 days after Email 2)
       if (daysSinceApplication >= 8 && !application.email3Sent) {
         await sendEmail3(application)
         email3Count++
+        // Throttle to stay under SES rate limit
+        if (email3Count % sesLimit === 0) {
+          console.log(`Rate limiting: Sent ${email3Count} emails, pausing 1 second...`)
+          await new Promise(resolve => setTimeout(resolve, 1000))
+        }
       }
     }
 
