@@ -1,7 +1,7 @@
 
 /*
  * Daily EventBridge-triggered Lambda for AI Accelerator follow-up emails
- * Sends Email 2 (2 days after application) and Email 3 (8 days after application)
+ * Sends Email 2 (1 day after application) and Email 3 (7 days after Email 2)
  */
 
 import { readFile } from 'fs/promises'
@@ -77,12 +77,17 @@ export async function handler (event) {
 
       // Email 2: Send 1 day after application (under-promise, over-deliver)
       if (daysSinceApplication >= 1 && !application.email2Sent) {
-        await sendEmail2(application)
-        email2Count++
-        // Throttle to stay under SES rate limit
-        if (email2Count % sesLimit === 0) {
-          console.log(`Rate limiting: Sent ${email2Count} emails, pausing 1 second...`)
-          await new Promise(resolve => setTimeout(resolve, 1000))
+        try {
+          await sendEmail2(application)
+          email2Count++
+          // Throttle to stay under SES rate limit
+          if (email2Count % sesLimit === 0) {
+            console.log(`Rate limiting: Sent ${email2Count} emails, pausing 1 second...`)
+            await new Promise(resolve => setTimeout(resolve, 1000))
+          }
+        } catch (error) {
+          console.error(`Failed to send Email 2 to ${application.email}:`, error.message)
+          // Continue processing other applications
         }
       }
 
@@ -92,12 +97,17 @@ export async function handler (event) {
         var daysSinceEmail2 = Math.floor((now - email2Date) / (1000 * 60 * 60 * 24))
 
         if (daysSinceEmail2 >= 7) {
-          await sendEmail3(application)
-          email3Count++
-          // Throttle to stay under SES rate limit
-          if (email3Count % sesLimit === 0) {
-            console.log(`Rate limiting: Sent ${email3Count} emails, pausing 1 second...`)
-            await new Promise(resolve => setTimeout(resolve, 1000))
+          try {
+            await sendEmail3(application)
+            email3Count++
+            // Throttle to stay under SES rate limit
+            if (email3Count % sesLimit === 0) {
+              console.log(`Rate limiting: Sent ${email3Count} emails, pausing 1 second...`)
+              await new Promise(resolve => setTimeout(resolve, 1000))
+            }
+          } catch (error) {
+            console.error(`Failed to send Email 3 to ${application.email}:`, error.message)
+            // Continue processing other applications
           }
         }
       }
@@ -148,6 +158,10 @@ async function sendEmail2 (application) {
     console.log(`Sending Email 2 to ${application.email}`)
 
     var scholarshipInfo = scholarshipCalculations[application.assistance]
+    if (!scholarshipInfo) {
+      throw new Error(`Invalid assistance value: ${application.assistance}`)
+    }
+
     var tracking = `email=${application.email}&list=ai-accelerator-followup&edition=email-2`
 
     var rawHtml = await readFile("email-2.html", "utf8")
@@ -186,7 +200,7 @@ async function sendEmail2 (application) {
     console.log(`Email 2 sent successfully to ${application.email}`)
   } catch (error) {
     console.error(`Error sending Email 2 to ${application.email}:`, error)
-    throw error
+    throw error // Re-throw so outer try/catch can log and continue
   }
 }
 
@@ -196,6 +210,10 @@ async function sendEmail3 (application) {
     console.log(`Sending Email 3 to ${application.email}`)
 
     var scholarshipInfo = scholarshipCalculations[application.assistance]
+    if (!scholarshipInfo) {
+      throw new Error(`Invalid assistance value: ${application.assistance}`)
+    }
+
     var tracking = `email=${application.email}&list=ai-accelerator-followup&edition=email-3`
 
     var rawHtml = await readFile("email-3.html", "utf8")
@@ -234,6 +252,6 @@ async function sendEmail3 (application) {
     console.log(`Email 3 sent successfully to ${application.email}`)
   } catch (error) {
     console.error(`Error sending Email 3 to ${application.email}:`, error)
-    throw error
+    throw error // Re-throw so outer try/catch can log and continue
   }
 }
