@@ -86,14 +86,19 @@ export async function handler (event) {
         }
       }
 
-      // Email 3: Send 8 days after application (7 days after Email 2)
-      if (daysSinceApplication >= 8 && !application.email3Sent) {
-        await sendEmail3(application)
-        email3Count++
-        // Throttle to stay under SES rate limit
-        if (email3Count % sesLimit === 0) {
-          console.log(`Rate limiting: Sent ${email3Count} emails, pausing 1 second...`)
-          await new Promise(resolve => setTimeout(resolve, 1000))
+      // Email 3: Send 7 days after Email 2 was sent
+      if (application.email2Sent && !application.email3Sent) {
+        var email2Date = new Date(application.email2Sent)
+        var daysSinceEmail2 = Math.floor((now - email2Date) / (1000 * 60 * 60 * 24))
+
+        if (daysSinceEmail2 >= 7) {
+          await sendEmail3(application)
+          email3Count++
+          // Throttle to stay under SES rate limit
+          if (email3Count % sesLimit === 0) {
+            console.log(`Rate limiting: Sent ${email3Count} emails, pausing 1 second...`)
+            await new Promise(resolve => setTimeout(resolve, 1000))
+          }
         }
       }
     }
