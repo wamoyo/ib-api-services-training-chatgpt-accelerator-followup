@@ -1,0 +1,38 @@
+
+⏰ SCHOLARSHIP DEADLINE TODAY
+
+Final email from us...
+
+Your deadline to secure your {{amount}} scholarship for the 2026 AI Accelerator
+is today.
+
+NEED MORE TIME?
+
+If you need an extension or have questions, simply reply to this email or
+call/text (212) 206-1401 and we'll help.
+
+If you're ready to join, use the link below:
+
+💻 JOIN THE ACCELERATOR »
+https://www.innovationbound.com/chatgpt-training/small-business-ai-accelerator-payment
+
+QUICK REMINDER:
+- Your Scholarship: {{grantedAmount}} ({{grantedPercentage}}%)
+- Your Total Fee: {{fee}}
+- Program Length: 12 months
+- Includes: Up to 10 seats (you + 9 employees)
+
+We hope to see you in the program,
+The Innovation Bound Team
+support@innovationbound.com
+
+--------------------------------------------------------------------------------
+
+This is a notification email from InnovationBound.com for your scholarship application.
+You are not subscribed to anything.
+
+To check your email settings with us visit »
+{{emailSettings}}
+
+Visit Innovation Bound's AI Accelerator application page where this email originated »
+www.InnovationBound.com/chatgpt-training/small-business-ai-accelerator

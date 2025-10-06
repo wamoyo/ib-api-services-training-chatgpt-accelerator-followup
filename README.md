@@ -1,12 +1,12 @@
 
-# IB API | Services | Training | ChatGPT | Accelerator | Apply
+# IB API | Services | Training | ChatGPT | Accelerator | Follow Up
 
 ```
-Repo:  ib-api-services-training-chatgpt-accelerator-apply
-Route: api.innovationbound.com/services/training/chatgpt/accelerator/apply
+Repo:  ib-api-services-training-chatgpt-accelerator-followup
+Route: api.innovationbound.com/services/training/chatgpt/accelerator/followup
 ```
 
-Processes application to the AI Accelerator
+Send scheduled follow up emails for 2026 AI Accelerator
 
 ## NPM scripts
 

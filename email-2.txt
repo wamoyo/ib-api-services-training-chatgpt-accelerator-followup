@@ -1,0 +1,42 @@
+
+💵 {{amount}} SCHOLARSHIP
+
+Good news... Your scholarship is larger than you requested. Please, secure your
+spot in the next 7 days (by {{date}}).
+
+The total program cost for the 2026 AI Accelerator is $30,000. You have a
+partial scholarship of {{grantedAmount}}. Your total fee comes to {{fee}} for
+the full 12-month program for you and up to 9 of your employees. Additional
+seats, if you need them, are {{additionalSeatCost}}.
+
+Use the link below to get the full program PDF, all your scholarship details,
+and to reserve your spot.
+
+💻 JOIN THE ACCELERATOR »
+https://www.innovationbound.com/chatgpt-training/small-business-ai-accelerator-payment
+
+Simply reply to this email with any questions, or call/text us at (212) 206-1401.
+
+We are thrilled to help grow your business with AI,
+The Innovation Bound Team
+support@innovationbound.com
+
+PS: Here are your application details:
+- Name: {{name}}
+- Email: {{email}}
+- Company Website: {{website}}
+- LinkedIn Profile: {{linkedin}}
+- Financial Assistance Requested: {{percentage}}% ({{amount}})
+- Financial Assistance Granted: {{grantedPercentage}}% ({{grantedAmount}})
+
+--------------------------------------------------------------------------------
+
+This is a notification email from InnovationBound.com for your scholarship application.
+You are not subscribed to anything.
+
+To check your email settings with us visit »
+{{emailSettings}}
+
+Visit Innovation Bound's AI Accelerator application page where this email originated »
+www.InnovationBound.com/chatgpt-training/small-business-ai-accelerator
+

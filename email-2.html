@@ -1,0 +1,96 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Innovation Bound</title>
+  <style>
+    @media only screen and (min-device-width: 541px) { .content { width: 540px !important; } }
+    body {
+      font-family: "Fira-Sans", sans-serif;
+      color: #1d2731;
+    }
+    em {
+      font-style: italic;
+    }
+    a {
+      color: #1d2731 !important;
+      font-weight: bold !important;
+      text-decoration: none !important;
+    }
+    a.button {
+      display: inline-block;
+      border: 2px solid #fdc844;
+      border-radius: .2em;
+      background: #fdc844;
+      padding: .5em;
+      margin: .5em 0;
+      color: #1d2731;
+      font-weight: bold;
+      text-decoration: none;
+      transition: .5s;
+    }
+    a.button:hover {
+      background: #fff !important;
+    }
+    a.button:active {
+      outline: 0;
+      border: 2px solid #1d2731 !important;
+    }
+    img.content {
+      display: block;
+      max-width: 540px;
+      width: 100%;
+      border-radius: .2em;
+      margin: .5em 0;
+    }
+    hr {
+      height: 2px;
+      border: 0;
+      background-image: linear-gradient( 90deg, rgba(253,200,68,1), rgba(228,228,228,0) ) !important;
+    }
+    p.footer {
+      font-weight: 300;
+    }
+  </style>
+</head>
+<body>
+  <table class="content" align="left" cellpadding="10" cellspacing="0" border="0" style="width: 100%; max-width: 540px;">
+    <tr>
+    <td>
+      <p>Subject: Scholarship granted for the 2026 AI Accelerator</p>
+      <a href="https://www.innovationbound.com">
+        <img style="width:100%;max-width:300px;" src="https://www.innovationbound.com/images/Innovation-Bound-Logo.png" alt="Greetings from the Innovation Bound Team!">
+      </a>
+      <h1>💵 {{amount}} Scholarship</h1>
+      <p style="font-size:1.1em;">Good news... Your scholarship is larger than you requested. Please, secure your spot in the next <strong>7 days (by {{date}})</strong>.</p>
+      <p>The total program cost for the <strong>2026 AI Accelerator</strong> is $30,000. You have a partial scholarship of {{grantedAmount}}. Your total fee comes to <strong>{{fee}}</strong> for the full 12-month program for you and <strong>up to 9 of your employees</strong>. Additional seats, if you need them, are {{additionalSeatCost}}.</p>
+      <p style="font-size:1.3em;">Use the link below to get the full program PDF, all your scholarship details, and to reserve your spot.</p>
+      <a class="button" style="display: inline-block; border: 2px solid #fdc844; border-radius: .2em; background: #fdc844; padding: .5em; margin: .5em 0; color: #1d2731; font-weight: bold; font-size: 1.2em; text-decoration: none;" href="https://www.innovationbound.com/chatgpt-training/small-business-ai-accelerator-payment?{{tracking}}">💻 Join The Accelerator »</a>
+      <p>Simply <em><strong>reply to this email</strong></em> with any questions, or call/text us at <strong>(212)&nbsp;206-1401</strong>.</p>
+      <p>
+        <span>We are thrilled to help grow your business with AI,</span>
+        <br>
+        <a href="https://www.innovationbound.com">The Innovation Bound Team</a>
+        <br>
+        <a style="color: #1d2731; font-weight: bold; text-decoration: none;" href="mailto:support@innovationbound.com">support@innovationbound.com</a>
+        <br>
+        <p>PS: Here are your application details:</p>
+        <ul>
+          <li>Name: {{name}}</li>
+          <li>Email: {{email}}</li>
+          <li>Company Website: {{website}}</li>
+          <li>LinkedIn Profile: {{linkedin}}</li>
+          <li>Financial Assistance Requested: {{percentage}}% ({{amount}})</li>
+          <li>Financial Assistance Granted: {{grantedPercentage}}% ({{grantedAmount}})</li>
+        </ul>
+      <br>
+      <hr>
+      <br>
+      <p class="footer">This is a notification email from InnovationBound.com for your scholarship application. You are not subscribed to anything.</p>
+      <p class="footer">To check your email settings with us visit » <a style="color: #1d2731; font-weight: bold; text-decoration: none;" href="{{emailSettings}}">emailSettings</a></p>
+      <p class="footer">Visit Innovation Bound's AI Accelerator application page where this email originated&nbsp;» <a style="color: #1d2731; font-weight: bold; text-decoration: none;" href="https://www.innovationbound.com/chatgpt-training/small-business-ai-accelerator">www.InnovationBound.com/chatgpt-training/small-business-ai-accelerator</a></p>
+      <p class="footer"><span style="font-size: .85em;">Postal address: 7903 Seminole BLVD, Seminole FL 33772</span></p>
+    </td>
+    </tr>
+  </table>
+</body>
+</html>
