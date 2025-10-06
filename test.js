@@ -1,24 +1,23 @@
 
 /*
- * Testing our lambda function
+ * Testing our followup lambda function
+ * This Lambda is triggered by EventBridge (cron schedule), not API Gateway
  */
 
-var lambda = require('./index.js').handler
+import { handler } from './index.js'
 
-// Should Work
-var application = {
-  "name": "Costa Michailidis",
-  "email": "costa@innovationbound.com",
-  "website": "https://www.innovationbound.com",
-  "linkedin": "https://www.linkedin.com/in/costamichailidis",
-  "assistance": "50"
+// EventBridge sends a scheduled event (empty object for our use case)
+var event = {
+  "id": "cdc73f9d-aea9-11e3-9d5a-835b769c0d9c",
+  "detail-type": "Scheduled Event",
+  "source": "aws.events",
+  "time": "1970-01-01T00:00:00Z",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:events:us-east-1:204617980925:rule/ai-accelerator-followup-daily"
+  ],
+  "detail": {}
 }
-// The curly braces below create an object, remember ; )
-lambda({body: JSON.stringify({application})}).then( console.log ).catch( console.log )
 
-// Missing Info
-
-// Bad Email
-
-// Not Signed
-
+console.log('Testing followup Lambda with EventBridge event...')
+handler(event).then(console.log).catch(console.error)
