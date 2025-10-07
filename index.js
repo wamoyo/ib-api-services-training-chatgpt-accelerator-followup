@@ -166,8 +166,8 @@ async function sendEmail2 (application) {
     // Tracking params for analytics
     var tracking = `email=${application.email}&list=ai-accelerator-followup&edition=email-2`
 
-    // Payment params for pre-filling form (different names to avoid conflict)
-    var paymentParams = `applicant=${encodeURIComponent(application.email)}&name=${encodeURIComponent(application.name)}&scholarshipAmount=${encodeURIComponent(scholarshipInfo.grantedAmount)}&finalFee=${encodeURIComponent(scholarshipInfo.fee)}&seatCost=${encodeURIComponent(scholarshipInfo.additionalSeatCost)}`
+    // Payment params for pre-filling form (simplified - derive other values on client)
+    var paymentParams = `applicant=${encodeURIComponent(application.email)}&name=${encodeURIComponent(application.name)}&finalFee=${encodeURIComponent(scholarshipInfo.fee)}`
 
     var rawHtml = await readFile("email-2.html", "utf8")
     var rawTxt = await readFile("email-2.txt", "utf8")
@@ -222,8 +222,8 @@ async function sendEmail3 (application) {
     // Tracking params for analytics
     var tracking = `email=${application.email}&list=ai-accelerator-followup&edition=email-3`
 
-    // Payment params for pre-filling form (different names to avoid conflict)
-    var paymentParams = `applicant=${encodeURIComponent(application.email)}&name=${encodeURIComponent(application.name)}&scholarshipAmount=${encodeURIComponent(scholarshipInfo.grantedAmount)}&finalFee=${encodeURIComponent(scholarshipInfo.fee)}&seatCost=${encodeURIComponent(scholarshipInfo.additionalSeatCost)}`
+    // Payment params for pre-filling form (simplified - derive other values on client)
+    var paymentParams = `applicant=${encodeURIComponent(application.email)}&name=${encodeURIComponent(application.name)}&finalFee=${encodeURIComponent(scholarshipInfo.fee)}`
 
     var rawHtml = await readFile("email-3.html", "utf8")
     var rawTxt = await readFile("email-3.txt", "utf8")
