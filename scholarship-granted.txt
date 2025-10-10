@@ -1,5 +1,5 @@
 
-💵 {{amount}} SCHOLARSHIP
+💵 {{grantedAmount}} SCHOLARSHIP
 
 Good news... Your scholarship is larger than you requested. Please, secure your
 spot in the next 7 days (by {{date}}).

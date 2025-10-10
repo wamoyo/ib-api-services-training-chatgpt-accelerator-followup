@@ -75,8 +75,8 @@ export async function handler (event) {
 
       console.log(`Processing ${application.email}: Applied ${daysSinceApplication} days ago`)
 
-      // Email 2: Send 1 day after application (under-promise, over-deliver)
-      if (daysSinceApplication >= 1 && !application.email2Sent) {
+      // Email 2: Send next morning after application (next cron run)
+      if (daysSinceApplication >= 0 && !application.email2Sent) {
         try {
           await sendEmail2(application)
           email2Count++
@@ -164,13 +164,13 @@ async function sendEmail2 (application) {
     }
 
     // Tracking params for analytics
-    var tracking = `email=${application.email}&list=ai-accelerator-followup&edition=email-2`
+    var tracking = `email=${application.email}&list=ai-accelerator-applications&edition=scholarship-granted`
 
     // Payment params for pre-filling form (simplified - derive other values on client)
     var paymentParams = `applicant=${encodeURIComponent(application.email)}&name=${encodeURIComponent(application.name)}&finalFee=${encodeURIComponent(scholarshipInfo.fee)}`
 
-    var rawHtml = await readFile("email-2.html", "utf8")
-    var rawTxt = await readFile("email-2.txt", "utf8")
+    var rawHtml = await readFile("scholarship-granted.html", "utf8")
+    var rawTxt = await readFile("scholarship-granted.txt", "utf8")
 
     var html = replaceVariables(rawHtml, application, scholarshipInfo, tracking, paymentParams)
     var txt = replaceVariables(rawTxt, application, scholarshipInfo, tracking, paymentParams)
@@ -220,13 +220,13 @@ async function sendEmail3 (application) {
     }
 
     // Tracking params for analytics
-    var tracking = `email=${application.email}&list=ai-accelerator-followup&edition=email-3`
+    var tracking = `email=${application.email}&list=ai-accelerator-applications&edition=deadline-reminder`
 
     // Payment params for pre-filling form (simplified - derive other values on client)
     var paymentParams = `applicant=${encodeURIComponent(application.email)}&name=${encodeURIComponent(application.name)}&finalFee=${encodeURIComponent(scholarshipInfo.fee)}`
 
-    var rawHtml = await readFile("email-3.html", "utf8")
-    var rawTxt = await readFile("email-3.txt", "utf8")
+    var rawHtml = await readFile("deadline-reminder.html", "utf8")
+    var rawTxt = await readFile("deadline-reminder.txt", "utf8")
 
     var html = replaceVariables(rawHtml, application, scholarshipInfo, tracking, paymentParams)
     var txt = replaceVariables(rawTxt, application, scholarshipInfo, tracking, paymentParams)
