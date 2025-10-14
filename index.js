@@ -1,7 +1,7 @@
 
 /*
  * Daily EventBridge-triggered Lambda for AI Accelerator follow-up emails
- * Sends Email 2 (1 day after application) and Email 3 (7 days after Email 2)
+ * Sends Email 2 (1 day after application) and Email 3 (11 days after Email 2)
  */
 
 import { readFile } from 'fs/promises'
@@ -91,12 +91,12 @@ export async function handler (event) {
         }
       }
 
-      // Email 3: Send 7 days after Email 2 was sent
+      // Email 3: Send 11 days after Email 2 was sent
       if (application.email2Sent && !application.email3Sent) {
         var email2Date = new Date(application.email2Sent)
         var daysSinceEmail2 = Math.floor((now - email2Date) / (1000 * 60 * 60 * 24))
 
-        if (daysSinceEmail2 >= 7) {
+        if (daysSinceEmail2 >= 11) {
           try {
             await sendEmail3(application)
             email3Count++
@@ -122,10 +122,10 @@ export async function handler (event) {
   }
 }
 
-// Pure: Calculates deadline date (7 days from now)
+// Pure: Calculates deadline date (12 days from now)
 function getDeadlineDate () {
   var deadline = new Date()
-  deadline.setDate(deadline.getDate() + 7)
+  deadline.setDate(deadline.getDate() + 12)
   return deadline.toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
@@ -243,7 +243,7 @@ async function sendEmail3 (application) {
         },
         Subject: {
           Charset: "UTF-8",
-          Data: `⏰ Scholarship Deadline Today for the 2026 AI Accelerator`
+          Data: `⏰ Scholarship Deadline Tomorrow for the 2026 AI Accelerator`
         }
       },
       ReplyToAddresses: [replyToAddress],

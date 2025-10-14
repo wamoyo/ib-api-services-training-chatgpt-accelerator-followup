@@ -2,7 +2,7 @@
 💵 {{grantedAmount}} SCHOLARSHIP
 
 Good news... Your scholarship is larger than you requested. Please, secure your
-spot in the next 7 days (by {{date}}).
+spot in the next 12 days (by {{date}}).
 
 The total program cost for the 2026 AI Accelerator is $30,000. You have a
 partial scholarship of {{grantedAmount}}. Your total fee comes to {{fee}} for
